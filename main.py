@@ -35,7 +35,7 @@ class LoginPage(Screen):
 class SignupPage(Screen):
 
     def verify_login_request(self, mail, pswd):
-        print("Email:", mail, "\nPassword:", pswd)
+        print("Email: s", mail, "\nPassword:", pswd)
 
 class ProfilePicture(IconLeftWidget):
     pass
