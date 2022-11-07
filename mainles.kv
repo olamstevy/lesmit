@@ -1,0 +1,495 @@
+
+#: import WipeTransition kivy.uix.screenmanager.WipeTransition
+
+
+# Dynamic Classes are created here
+<WlcPgCaroCtrl>:
+    group: 'wlcpgcaroctrl'
+    size_hint: None, None
+    size: dp(20), dp(20)
+    radio_icon_normal: 'checkbox-blank-circle-outline'
+    radio_icon_down: 'circle-slice-8'
+    checkbox_icon_normal: 'checkbox-blank-circle-outline'
+    checkbox_icon_down: 'circle-slice-8'
+    color_active: (1, 1, 1, 1)
+    color_inactive: (1, 1, 1, 1)
+
+<WlcPgLbl>:
+    halign: 'center'
+    size_hint: 0.7, None
+    font_name: 'fonts/ARLRDBD'
+    line_height: sp(1.3)
+    color: (1, 1, 1, 1)
+    markup: True
+    bold: False
+    font_size: sp(25)
+    pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+
+<LoginSignUpTextField>:
+    fill_color_normal: (1, 1, 1, .7)
+    fill_color_focus: (1, 1, 1, .9)
+    hint_text_color_normal: (0, 0, 0, 1)
+    hint_text_color_focus: (0, 0, 0, 1)
+    icon_left_color_normal: (0, 0, 0, 1)
+    icon_left_color_focus: (0, 0, 0, 1)
+    text_color_normal: (0, 0, 0, 1)
+    text_color_focus: (0, 0, 0, 1)
+    error_color: (.1, 0, 0, .8)
+    radius: 20, 20, 20, 20
+    size_hint_x: None
+    width: 0.8 * self.parent.width
+    font_size: sp(17)
+    font_name: 'fonts/seguihis'
+    mode: 'fill'
+    required: True
+    helper_text_mode: 'on_error'
+    active_line: False
+
+<SignupPswdTextField>:
+    size_hint: None, None
+    pos_hint: {'center_x':.5}
+    width: 0.8 * self.parent.width
+    height: custom_signup_pswd_textfield.height
+    text: custom_signup_pswd_textfield.text
+    error: custom_signup_pswd_textfield.error
+
+    LoginSignUpTextField:
+        id: custom_signup_pswd_textfield
+        password: True
+        pos: root.pos
+        icon_left: "key-variant"
+        hint_text: 'Password'
+        width: root.width
+        x: 0.1 * self.parent.width
+        max_text_length: 15
+        max_length_text_color: (.3, 0, 0, 1)
+        on_text:
+            if len(self.text) < 5 : self.error = True
+            if len(self.text) >= 5 and len(self.text) <= 15: self.error = False
+
+    MDIconButton:
+        icon: "eye-off"
+        pos: (root.width + (root.parent.width - root.width)/2) - self.width, root.pos[1]
+        theme_text_color: "Hint"
+        icon: "eye"
+        on_release:
+            self.icon = "eye" if self.icon == "eye-off" else "eye-off"
+            custom_signup_pswd_textfield.password = False if custom_signup_pswd_textfield.password is True else True
+
+
+<SignupPswdTextFieldConfirm>:
+    size_hint: None, None
+    pos_hint: {'center_x':.5}
+    width: 0.8 * self.parent.width
+    height: custom_signup_pswd_confirm_textfield.height
+    text: custom_signup_pswd_confirm_textfield.text
+    error: custom_signup_pswd_confirm_textfield.error
+
+    LoginSignUpTextField:
+        id: custom_signup_pswd_confirm_textfield
+        password: True
+        pos: root.pos
+        icon_left: "key-variant"
+        hint_text: 'Confirm Password'
+        width: root.width
+        x: 0.1 * self.parent.width
+        max_text_length: 15
+        max_length_text_color: (.3, 0, 0, 1)
+        on_text:
+            if len(self.text) < 5 : self.error = True
+            if len(self.text) >= 5 and len(self.text) <= 15: self.error = False
+
+    MDIconButton:
+        icon: "eye-off"
+        pos: (root.width + (root.parent.width - root.width)/2) - self.width, root.pos[1]
+        theme_text_color: "Hint"
+        icon: "eye"
+        on_release:
+            self.icon = "eye" if self.icon == "eye-off" else "eye-off"
+            custom_signup_pswd_confirm_textfield.password = False if \
+            custom_signup_pswd_confirm_textfield.password is True else True
+
+
+
+<LoginPswdTextField>:
+    size_hint: None, None
+    pos_hint: {'center_x':.5}
+    width: 0.8 * self.parent.width
+    height: custom_login_pswd_textfield.height
+    text: custom_login_pswd_textfield.text
+    error: custom_login_pswd_textfield.error
+
+    LoginSignUpTextField:
+        id: custom_login_pswd_textfield
+        password: True
+        pos: root.pos
+        icon_left: "key-variant"
+        hint_text: 'Password'
+        width: root.width
+        x: 0.1 * self.parent.width
+        max_text_length: 15
+        max_length_text_color: (.3, 0, 0, 1)
+        on_text:
+            if len(self.text) < 5 : self.error = True
+            if len(self.text) >= 5 and len(self.text) <= 15: self.error = False
+
+    MDIconButton:
+        icon: "eye-off"
+        pos: (root.width + (root.parent.width - root.width)/2) - self.width, root.pos[1]
+        theme_text_color: "Hint"
+        icon: "eye"
+        on_release:
+            self.icon = "eye" if self.icon == "eye-off" else "eye-off"
+            custom_login_pswd_textfield.password = False if custom_login_pswd_textfield.password is True else True
+<ProfilePicture>:
+    icon: 'images/transparent.png'
+    
+    canvas.before:
+        Color:
+            rgba: (0, 0, 0, 1)
+        Ellipse:
+            pos: self.pos
+            size: self.size
+    
+    canvas.after:
+        Color:
+            rgba: (1, 1, 1, 1)
+        Ellipse:
+            source: 'images/logo.png'
+            pos: self.pos
+            size: self.size
+
+<ChatTextField>:
+    fill_color_normal: (.7, .7, .7, .5)
+    fill_color_focus: (.7, .7, .7, .3)
+    hint_text_color_normal: (0, 0, 0, 1)
+    hint_text_color_focus: (0, 0, 0, 1)
+    icon_left_color_normal: (0, 0, 0, 1)
+    icon_left_color_focus: (0, 0, 0, 1)
+    text_color_normal: (0, 0, 0, 1)
+    text_color_focus: (0, 0, 0, 1)
+    radius: 5, 5, 5, 5
+    size: 200, dp(400)
+    font_size: sp(17)
+    multiline: True
+    font_name: 'fonts/seguihis'
+    mode: 'fill'
+    active_line: False
+
+#Dynamic Classes ends here
+
+ScreenManager:
+    id: scrmgr
+    transition: WipeTransition()
+    WelcomePage:
+    HomePage:
+    LoginPage:
+    SignupPage:
+    ChatPage:
+    SettingsPage:
+    BioPage:
+
+
+
+<SettingsPage>:
+    name: 'settingspage'
+
+
+<BioPage>:
+    name: 'biopage'
+
+
+<ChatPage>:
+    name: 'chatpage'
+    MDBoxLayout:
+        orientation: 'vertical'
+
+        MDTopAppBar:
+            title: 'STEVE'
+            left_action_items: [["account", lambda x: None]]
+            right_action_items: [["dots-vertical", lambda x: None]]
+            md_bg_color: (.1, .2, .2, 1)
+        MDScrollView:
+            MDGridLayout:
+        MDBoxLayout:
+            ChatTextField:
+                hint_text: 'Enter text here...'
+
+
+
+<HomePage>:
+    name: 'homepage'
+    id: homepg
+    all_chat_list: all_chat_list
+    MDBoxLayout:
+        orientation: 'vertical'
+        MDTopAppBar:
+            title: 'Lesmit Chat App'
+            left_action_items: [["images/logo.png", lambda x: None]]
+            right_action_items: [["dots-vertical", lambda x: None]]
+            md_bg_color: (.1, .2, .2, 1)
+
+        MDScrollView:
+            MDList:
+                id: all_chat_list
+
+<SignupPage>:
+    name: 'signuppage'
+    MDScrollView:
+        do_scroll_x: False
+        do_sroll_y: True
+        canvas.before:
+            Color: 
+                rgba: (.7, .8, .8, 1)
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        
+        MDGridLayout:
+            size_hint: 1, None
+            height: self.minimum_height
+            cols: 1
+            spacing: '20dp'
+            padding: 0.1 * self.width, 0
+
+            MDLabel:
+                size_hint: 1, None
+                height: dp(40)
+                text: 'Please enter details to Signup'
+                color: (0, 0, 0, 1)
+                font_name: 'fonts/seguihis'
+                halign: 'center'
+                font_size: sp(21)
+            
+            LoginSignUpTextField:
+                id: signup_fullname_txtfield
+                hint_text: 'Full Name'
+                icon_left: 'account'
+            
+            LoginSignUpTextField:
+                id: signup_fullname_txtfield
+                hint_text: 'Date of Birth'
+                icon_left: 'calendar'
+            
+            LoginSignUpTextField:
+                id: signup_mail_txtfield
+                hint_text: 'Email address'
+                icon_left: 'email'
+                validator: 'email'
+            
+            LoginSignUpTextField:
+                id: signup_mail_txtfield
+                hint_text: 'Phone Number'
+                icon_left: 'phone'
+                validator: 'phone'
+            
+            SignupPswdTextField:
+                id: signup_pswd_txtfield
+            SignupPswdTextFieldConfirm:
+                id: confirm_signup_pswd_txtfield
+
+            # Button submit when true for both fields
+            MDFlatButton:
+                text: 'Signup'
+                _radius: dp(20)
+                size_hint: 0.8, .1
+                md_bg_color: (.2, .3, .3, 1)
+                text_color: (1, 1, 1, 1)
+                theme_text_color: "Custom"
+                font_name: 'fonts/Futura Md BT Medium'
+                font_size: sp(20)
+                pos_hint: {'center_x':.5, 'center_y':.13}
+                on_release:
+                    if not signup_mail_txtfield.error and not signup_pswd_txtfield.error: \
+                    root.verify_signup_request(signup_mail_txtfield.text, signup_pswd_txtfield.text); \
+                    signup_mail_txtfield.text, signup_pswd_txtfield.text = '', ''
+
+            MDFlatButton:
+                text: '[u]Already have an account? Sign in...[/u]'
+                theme_text_color: 'Custom'
+                text_color: (.05, .05, .4, 1)
+                markup: True
+                size_hint_x: 1
+                halign: 'center'
+                font_name: 'fonts/segoeuii'
+                font_size: sp(13)
+                on_release: root.manager.current = 'loginpage'
+
+
+<LoginPage>:
+    name: 'loginpage'
+    MDScrollView:
+        do_scroll_x: False
+        do_sroll_y: True
+        canvas.before:
+            Color: 
+                rgba: (.7, .8, .8, 1)
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        
+        MDGridLayout:
+            size_hint: 1, None
+            height: self.minimum_height
+            cols: 1
+            spacing: '20dp'
+            padding: 0.1 * self.width, 0
+
+            MDLabel:
+                pos_hint: {'center_x': .5, 'center_y': .68}
+                size_hint: .8, None
+                text: 'Please enter details to login'
+                color: (0, 0, 0, 1)
+                font_name: 'fonts/seguihis'
+                halign: 'center'
+                font_size: sp(21)
+            
+            LoginSignUpTextField:
+                id: login_mail_txtfield
+                pos_hint: {'center_x': .5, 'center_y': .55}
+                hint_text: 'Email Address'
+                font_name: 'fonts/seguihis'
+                icon_left: 'email'
+                validator: 'email'
+                helper_text: 'Please enter a valid email address'
+            
+            LoginPswdTextField:
+                id: login_pswd_txtfield
+
+            # Button submit when true for both fields
+            MDFlatButton:
+                text: 'Login'
+                _radius: dp(20)
+                size_hint: .8, .1
+                md_bg_color: (.0, .1, .1, 1)
+                text_color: (1, 1, 1, 1)
+                theme_text_color: "Custom"
+                font_name: 'fonts/Futura Md BT Medium'
+                font_size: sp(20)
+                pos_hint: {'center_x':.5, 'center_y':.25}
+                on_release:
+                    if not login_mail_txtfield.error and not login_pswd_txtfield.ids.custom_login_pswd_textfield.error: \
+                    root.verify_login_request(login_mail_txtfield.text,\ 
+                    login_pswd_txtfield.ids.custom_login_pswd_textfield.text);
+                    login_mail_txtfield.text = ''
+                    login_pswd_txtfield.ids.custom_login_pswd_textfield.text = ''
+
+            MDFlatButton:
+                size_hint_x: 1
+                text: "[u]Don\'t have an account? Create One...[/u]"
+                theme_text_color: 'Custom'
+                text_color: (.25, .25, 5, 1)
+                width: self.parent.width
+                markup: True
+                font_name: 'fonts/segoeuii'
+                font_size: sp(13)
+                on_release: root.manager.current = 'signuppage'
+
+
+
+<WelcomePage>:
+    name: 'welcomepage'
+    MDFloatLayout:
+        md_bg_color: (0, .05, .05, 1)
+        
+        MDCarousel:
+            size_hint: 1, 0.6
+            pos_hint: {'center_x': 0.5, 'center_y': 0.7}
+            id: welcomepagecarousel
+            scroll_timeout: 0
+            loop: True
+
+            WlcPgLbl:
+                text: 'Lesmit helps you reach your [i]Family, Friends and Colleagues[/i] with just one click...'
+            
+            WlcPgLbl:
+                text: 'Start with us today and enjoy the massive benefits of using Lesmit'
+            
+            WlcPgLbl:
+                text: 'Dont enjoy alone, share your experience with others.'
+            
+            WlcPgLbl:
+                text: 'Thank you for choosing Lesmit!'
+            
+            MDFloatLayout:
+                MDLabel:
+                    text: 'Do you have a LESMIT account?'
+                    color: (1, 1, 1, 1)
+                    font_name: 'fonts/seguihis'
+                    halign: 'center'
+                    font_size: sp(30)
+                    pos_hint: {'center_x':.5, 'center_y':.6}
+
+                MDIconButton:
+                    icon: 'checkbox-marked-circle'
+                    user_font_color: (0, 0, 0, 0)
+                    user_font_size: sp(45)
+                    pos_hint: {'center_x': 0.3, 'center_y':0.3}
+                    md_bg_color: (1, 1, 1, .1)
+                    theme_text_color: 'Custom'
+                    text_color: (1, 1, 1, 1)
+                    on_release: root.manager.current = 'loginpage'
+
+                MDIconButton:
+                    icon: 'alpha-x-circle'
+                    user_font_size: sp(45)
+                    pos_hint: {'center_x': 0.7, 'center_y':0.3}
+                    md_bg_color: (.6, .4, .4, .2)
+                    theme_text_color: 'Custom'
+                    text_color: (1, 1, 1, 1)
+                    on_release: root.manager.current = 'signuppage'
+
+            
+        WlcPgCaroCtrl:
+            active: True
+            pos_hint: {"center_x":.135 , "center_y":.35}
+            id: wlc_pg_crsl_rd_0
+            on_release: welcomepagecarousel.load_slide(welcomepagecarousel.slides[0])
+        WlcPgCaroCtrl:
+            pos_hint: {"center_x":.315, "center_y":.35}
+            id: wlc_pg_crsl_rd_1
+            on_release: welcomepagecarousel.load_slide(welcomepagecarousel.slides[1]); wlc_pg_crsl_rd_1.active = True
+        WlcPgCaroCtrl:
+            pos_hint: {"center_x":.495, "center_y":.35}
+            id: wlc_pg_crsl_rd_2
+            on_press: self.active = True
+            on_release: welcomepagecarousel.load_slide(welcomepagecarousel.slides[2])
+        WlcPgCaroCtrl:
+            pos_hint: {"center_x":.675, "center_y":.35}
+            id: wlc_pg_crsl_rd_3
+            on_press: self.active = True
+            on_release: welcomepagecarousel.load_slide(welcomepagecarousel.slides[3])
+        WlcPgCaroCtrl:
+            pos_hint: {"center_x":.855, "center_y":.35}
+            id: wlc_pg_crsl_rd_4
+            on_press: self.active = True
+            on_release: welcomepagecarousel.load_slide(welcomepagecarousel.slides[4])
+        
+
+        MDIconButton:
+            icon: 'arrow-left'
+            pos_hint: {'center_x': 0.3, 'center_y': .2}
+            md_bg_color: (1, 1, 1, .1)
+            size: sp(50), sp(50)
+            theme_text_color: 'Custom'
+            text_color: (1, 1, 1, 1)
+            on_release:
+                wlc_pg_crsl_rd_lst = [wlc_pg_crsl_rd_0, wlc_pg_crsl_rd_1, \
+                wlc_pg_crsl_rd_2, wlc_pg_crsl_rd_3, wlc_pg_crsl_rd_4]
+                (wlc_pg_crsl_rd_lst[welcomepagecarousel.index - 1]).active = True
+                welcomepagecarousel.load_previous()
+
+        MDIconButton:
+            icon: 'arrow-right'
+            pos_hint: {'center_x': 0.7, 'center_y': .2}
+            md_bg_color: (1, 1, 1, .1)
+            user_font_size: sp(25)
+            theme_text_color: 'Custom'
+            text_color: (1, 1, 1, 1)
+            on_release:
+                wlc_pg_crsl_rd_lst = [wlc_pg_crsl_rd_0, wlc_pg_crsl_rd_1, \
+                wlc_pg_crsl_rd_2, wlc_pg_crsl_rd_3, wlc_pg_crsl_rd_4]
+                if welcomepagecarousel.index + 1 > len(wlc_pg_crsl_rd_lst) - 1: \
+                wlc_pg_crsl_rd_lst[0].active = True
+                else: (wlc_pg_crsl_rd_lst[welcomepagecarousel.index + 1]).active = True
+                welcomepagecarousel.load_next()

@@ -1,4 +1,3 @@
-import sre_compile
 from kivy.lang import Builder
 from kivy.properties import ObjectProperty
 from kivy.animation import Animation
@@ -10,6 +9,7 @@ from kivymd.uix.label import MDLabel
 from kivymd.uix.textfield import MDTextField
 from kivymd.uix.selectioncontrol import MDCheckbox
 from kivymd.uix.list import TwoLineAvatarIconListItem, IconLeftWidget
+from kivymd.uix.widget import MDWidget
 from kivy.graphics import Color, Ellipse
 from os import listdir
 
@@ -23,6 +23,14 @@ class WlcPgCaroCtrl(MDCheckbox):
     pass
 class WlcPgLbl(MDLabel):
     pass
+class SignupPswdTextField(MDWidget):
+    pass
+class SignupPswdTextFieldConfirm(MDWidget):
+    pass
+class LoginPswdTextField(MDWidget):
+    pass
+class ChatTextField(MDTextField):
+    pass
 # End of Dynamic Classes
 
 
@@ -34,7 +42,7 @@ class LoginPage(Screen):
 
 class SignupPage(Screen):
 
-    def verify_login_request(self, mail, pswd):
+    def verify_signup_request(self, mail, pswd):
         print("Email:", mail, "\nPassword:", pswd)
 
 class ProfilePicture(IconLeftWidget):
@@ -81,16 +89,13 @@ class Lesmit(MDApp):
     def build(self):
         self.title = 'Lesmit'
         self.icon = 'images/logo.png'
-        screen = Builder.load_file('lesmit.kv')
-        self.screen = screen
-        return screen
-    
-    def on_start(self):
+        screen = Builder.load_file('mainles.kv')
         filesindir = listdir()
         if 'info' in filesindir:
-            self.screen.current = 'loginpage'
+            screen.current = 'loginpage'
         else:
-            self.screen.current = 'homepage'
+            screen.current = 'chatpage'
+        return screen
 
 
 if __name__ == "__main__":

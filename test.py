@@ -7,49 +7,56 @@ from kivymd.icon_definitions import md_icons
 
 
 KV = '''
-<ListItemWithCheckbox>:
-
-    IconLeftWidget:
-        canvas.before:
-            Color:
-                rgba: (1, 1, 1, 1)
-            Ellipse:
-                source: 'homebg.png'
-                pos: self.pos
-                size: self.size
-    RightCheckbox:
-
-
 MDScrollView:
+    do_scroll_x: False
+    do_scroll_y: True
 
-    MDList:
-        id: scroll
+    MDGridLayout:
+        cols: 1
+        height: self.minimum_height
+        size_hint_y: None
+        
+        Label:
+            size_hint_y: None
+            height: self.texture_size[1]
+            text_size: self.width, None
+            color: (0, 0, 0, 1)
+            padding: 10, 10
+            text:
+                'really some amazing text\\n'
+        
+        Label:
+            size_hint_y: None
+            height: self.texture_size[1]
+            text_size: self.width, None
+            color: (0, 0, 0, 1)
+            padding: 10, 10
+            text:
+                'really some amazing text\\n'
+        
+        Label:
+            size_hint_y: None
+            height: self.texture_size[1]
+            text_size: self.width, None
+            color: (0, 0, 0, 1)
+            padding: 10, 10
+            text:
+                'really some amazing text\\n'
+        
+        Label:
+            size_hint_y: None
+            height: self.texture_size[1]
+            text_size: self.width, None
+            color: (0, 0, 0, 1)
+            padding: 10, 10
+            text:
+                'really some amazing text\\n'
 '''
-
-
-class ListItemWithCheckbox(OneLineAvatarIconListItem):
-    '''Custom list item.'''
-
-    icon = StringProperty("android")
-
-
-class RightCheckbox(IRightBodyTouch, MDCheckbox):
-    '''Custom right container.'''
-
 
 class Example(MDApp):
     def build(self):
         self.theme_cls.theme_style = "Light"
-        print('build')
         return Builder.load_string(KV)
-
-    def on_start(self):
-        print('start')
-        icons = list(md_icons.keys())
-        for i in range(30):
-            self.root.ids.scroll.add_widget(
-                ListItemWithCheckbox(text=f"Item {i}", icon='images/transparent.png')
-            )
 
 
 Example().run()
