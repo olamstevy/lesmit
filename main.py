@@ -31,6 +31,12 @@ class LoginPswdTextField(MDWidget):
     pass
 class ChatTextField(MDTextField):
     pass
+class ChatMic(MDIconButton):
+    pass
+class ChatSendBtn (MDIconButton):
+    pass
+class ChatCam (MDIconButton):
+    pass
 # End of Dynamic Classes
 
 

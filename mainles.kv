@@ -169,13 +169,19 @@
     text_color_normal: (0, 0, 0, 1)
     text_color_focus: (0, 0, 0, 1)
     radius: 5, 5, 5, 5
-    size: 200, dp(400)
-    font_size: sp(17)
-    max_height: '30dp'
+    font_size: sp(15)
+    max_height: '120dp'
     multiline: True
     font_name: 'fonts/seguihis'
     mode: 'fill'
     active_line: False
+
+<ChatMic>:
+    icon: 'microphone'
+<ChatSendBtn>:
+    icon: 'send'
+<ChatCam>:
+    icon: 'camera'
 
 #Dynamic Classes ends here
 
@@ -213,9 +219,16 @@ ScreenManager:
         MDScrollView:
             MDGridLayout:
         MDBoxLayout:
+            height: '70dp'
+            max_height: '120dp'
+            md_bg_color: (.3, .4, .5, 1)
+            
+            ChatCam:
+            ChatMic:
             ChatTextField:
+                id: chat_text_field
                 hint_text: 'Enter text here...'
-
+            ChatSendBtn:
 
 
 <HomePage>:
